@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Basic styling for the navigation menu */
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #333;
+      display: flex;
+    }
+
+    li {
+      position: relative;
+      display: inline-block;
+    }
+
+    a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      position: relative;
+    }
+
+    /* Submenu styling */
+    ul.submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%; /* Center the submenu */
+      transform: translateX(-50%); /* Adjust for centering */
+      background-color: #555;
+      padding: 0; /* No padding for the submenu */
+    }
+
+    li:hover .submenu {
+      display: flex;
+    }
+
+    /* Style for submenu items */
+    .submenu li {
+      display: inline-block;
+    }
+
+    .submenu a {
+      padding: 10px;
+    }
+
+    /* Triangle arrow styling */
+    .submenu::before {
+      content: '';
+      position: absolute;
+      top: -10px; /* Adjusted for spacing */
+      left: 50%;
+      margin-left: -10px; /* Half of the arrow width */
+      border-style: solid;
+      border-width: 0 10px 15px 10px;
+      border-color: transparent transparent #555 transparent;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li>
+      <a href="#">Products</a>
+      <!-- Submenu for Products -->
+      <ul class="submenu">
+        <li><a href="#">Category 1</a></li>
+        <li><a href="#">Category 2</a></li>
+        <li><a href="#">Category 3</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Services</a>
+      <!-- Dummy Submenu for Services -->
+      <ul class="submenu">
+        <li><a href="#">Service 1</a></li>
+        <li><a href="#">Service 2</a></li>
+        <li><a href="#">Service 3</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Contact</a>
+      <!-- Dummy Submenu for Contact -->
+      <ul class="submenu">
+        <li><a href="#">Contact Option 1</a></li>
+        <li><a href="#">Contact Option 2</a></li>
+        <li><a href="#">Contact Option 3</a></li>
+      </ul>
+    </li>
+  </ul>
+
+</body>
+</html>

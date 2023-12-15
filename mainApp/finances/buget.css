@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    --background-buget: #E07A5F;
+    --text-buget-color: #3D405B;
+    --border-color:#3D405B;
+    --button-color: #F4F1DE;
+    --button-hover-color: #81B29A;
+    --button-hover-background: #F1FAEE;
+}
+
+main.finances-bugget-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    padding: 2rem;
+    margin-top: 6rem;
+    margin-left: 1rem;
+    max-width: 16rem;
+    border: 0.2rem solid var(--border-color);
+    background:var(--button-hover-color);
+    color: var(--text-buget-color);
+    box-shadow: 2px 2px 2px 2px #ccc;
+    animation: fadeIn 1.5s ease-in;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    animation: moveLeftAndRight 2s ease-in-out;
+    text-shadow: 1px 1px 1px var(--button-color);
+}
+
+h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+    animation: moveLeftAndRight 1.5s ease-in-out;
+}
+
+.inputs {
+    display: flex;
+    align-self: flex-start;
+    padding: 0.2rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.inputs:hover,
+.inputs:active {
+    color: var(--button-color);
+}
+
+.button{
+    font: inherit;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 3px solid var(--border-color);
+    background: var(--button-color);
+    color: var(--text-buget-color);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+    background:var(--border-color);
+    color: var(--button-color);
+    border: 3px solid var(--background-buget);
+}
+
+@media screen and (min-width: 210px){
+    
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+@keyframes moveLeftAndRight {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(2rem);
+    }
+}

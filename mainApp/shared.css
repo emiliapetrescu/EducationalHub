@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,300;1,300&display=swap');
+
+:root {
+    --menu-background: #3D405B;
+    --secondary-background: #81B29A;
+    --text-color: #F4F1DE;
+}
+
+html,
+body,
+.app,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-header {
+    width: 100%;
+    background: var(--menu-background);
+    color: var(--text-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    z-index: 100;
+}
+
+.main-header__brand {
+    color: var(--text-color);
+    display: flex;
+}
+
+.main-header__brand img {
+    height: 5rem;
+    border-radius: 50%;
+    justify-self: center;
+
+}
+
+.nav-menu__items {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu__item {
+    margin: 0 1.8rem;
+}
+
+.nav-menu__item a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.nav-menu__item a:hover,
+.nav-menu__item a:active {
+    background: var(--text-color);
+    color: var(--menu-background);
+    padding: 1.6rem 1.2rem;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+
