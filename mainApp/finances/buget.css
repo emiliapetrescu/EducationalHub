@@ -46,11 +46,6 @@ h2{
     font-weight: bold;
 }
 
-.inputs:hover,
-.inputs:active {
-    color: var(--button-color);
-}
-
 .button{
     font: inherit;
     font-weight: bold;
