@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
     
+    
     TOTAL_INCOMES_BTN.addEventListener('click', (event) => {
         event.preventDefault();
         console.log ('button clicked');
