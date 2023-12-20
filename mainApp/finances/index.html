@@ -26,17 +26,134 @@
           </ul>
       </nav>
   </header>
-  <main class="finances-bugget-app">
-    <h1>Monthly budget</h1>
-    <h2>Incomes:</h2>
-    <label class="inputs"> Salary 1:</label><br>
-    <input type="text" id ="salary_1" class="inputs"><br>
-    <label class="inputs"> Salary 2:</label><br>
-    <input type="text" id ="salary_2" class="inputs"><br>
-    <label class="inputs"> Other Incomes:</label><br>
-    <input type="text" id ="otherIncomes" class="inputs"><br><br>
-    <button id="totalIncomeBtn" class="button">Total Incomes</button><br><br>
-    <input type="text" id ="resultDisplay" class="inputs" readonly><br><br>
-  </main>
+  <section class="app-box">
+    <main class="finances-budget-app">
+      <h1>Monthly budget</h1>
+      <h2>Incomes:</h2>
+      <label class="inputs"> Salary 1:</label>
+      <input type="text" id ="salary_1" class="inputs">
+      <label class="inputs"> Salary 2:</label>
+      <input type="text" id ="salary_2" class="inputs">
+      <label class="inputs"> Other Incomes:</label>
+      <input type="text" id ="otherIncomes" class="inputs">
+      <button id="total-income-btn" class="button">Total Incomes</button>
+      <input type="text" id ="resultDisplay" class="inputs" readonly>
+    </main>
+    
+      <main class="income-register">
+        <label class="income-types">Income Types:</label>
+        <select class="dropdown-option" aria-label="Large select">
+          <option class="dropdown-option" selected>Income type:</option>
+          <option class="dropdown-option" value="salary">Salary</option>
+          <option class="dropdown-option" value="self-employment-income">Self-employment income</option>
+          <option class="dropdown-option" value="bonuses-and-commissions">Bonuses & commissions</option>
+          <option class="dropdown-option" value="investment-income">Investment income</option>
+          <option class="dropdown-option" value="rental-income">Rental income</option>
+          <option class="dropdown-option" value="child-support-allowance">Child support allowance</option>
+          <option class="dropdown-option" value="government-assistance">Government assistance</option>
+          <option class="dropdown-option" value="retirement-income">Retirement income</option>
+          <input type="text" class="dropdown-option" id="income-amount" required placeholder="amount">
+        </select>
+        
+        <select class="dropdown-option" aria-label="Small select">
+          <option class="dropdown-option" selected>Income frequency:</option>
+          <option class="dropdown-option" value="bi-monthly">Bi-monthly</option>
+          <option class="dropdown-option" value="monthly">Monthly</option>
+          <option class="dropdown-option" value="quarterly">Quarterly</option>
+          <option class="dropdown-option" value="semi-annual">Semi-annual</option>
+          <option class="dropdown-option" value="annual">Annual</option>
+          <option class="dropdown-option" value="other-option">Other option</option>
+          <input type="date" class="dropdown-option" id="income-date" required placeholder="income date">
+        </select>
+        <button id="add-income-btn" class="button">ADD Income</button>
+        <ul id="incomes-list" class="user-output"></ul>
+    </main>
+
+    <main class="expenses-register">
+      <label class="expenses-types">Expenses Types:</label>
+      <select class="main-dropdown--options" id="main-expenses-dropdown">
+        <option class="main-dropdown-expenses" selected>Expense type:</option>
+        <option class="main-dropdown-expenses" value="housing-expenses">Housing</option>
+        <option class="main-dropdown-expenses" value="food-expenses">Food</option>
+        <option class="main-dropdown-expenses" value="debt-payments" >Debt payments</option>
+        <option class="main-dropdown-expenses" value="savings">Savings & investments</option>
+        <option class="main-dropdown-expenses" value="education-expenses" >Education</option>
+        <option class="main-dropdown-expenses" value="groceries-expenses" >Household items</option>
+        <option class="main-dropdown-expenses" value="transportations-expenses">Transportation</option>
+        <option class="main-dropdown-expenses" value="health-care-expenses" >Healthcare</option>
+        <option class="main-dropdown-expenses" value="entertainment-expenses">Entertainment & leisure</option>
+        <option class="main-dropdown-expenses" value="clothing-and-personal-expenses">Clothing & personal care</option>
+        <option class="main-dropdown-expenses" value="miscellaneous-expenses">Miscellaneous expenses</option>
+        <option class="main-dropdown-expenses" value="insurance-expenses">Insurances</option>
+        <option class="main-dropdown-expenses" value="taxes">Taxes</option>
+        <option class="main-dropdown-expenses" value="other-option">Other-option</option>
+      </select>
+
+      <select class="nested-dropdown--options" id="nested-expenses-dropdown">
+        <option class="nested-dropdown-expenses" selected>Select category:</option>
+        <option class="nested-dropdown-expenses" value="housing-expenses">Mortgage or rent</option>
+        <option class="nested-dropdown-expenses" value="housing-expenses">Property taxes</option>
+        <option class="nested-dropdown-expenses" value="housing-expenses">Home insurance</option>
+        <option class="nested-dropdown-expenses" value="housing-expenses">Utilities: house maintenance</option>
+        <option class="nested-dropdown-expenses" value="housing-expensess">Utilities: electricity</option>
+        <option class="nested-dropdown-expenses" value="housing-expenses">Utilities: gas</option>
+        <option class="nested-dropdown-expenses" value="housing-expenses">Utilities: telepfone</option>
+        <option class="nested-dropdown-expenses" value="housing-expenses">Utilities: cable & internet</option>
+        <option class="nested-dropdown-expenses" value="food-expenses">Groceries</option>
+        <option class="nested-dropdown-expenses" value="food-expenses">Dining out or ordering takeout</option>
+        <option class="nested-dropdown-expenses" value="debt-payments">Credit card payments</option>
+        <option class="nested-dropdown-expenses" value="debt-payments">Personal loans payments</option>
+        <option class="nested-dropdown-expenses" value="debt-payments">Other loan payments</option>
+        <option class="nested-dropdown-expenses" value="savings">Contributions to savings accounts</option>
+        <option class="nested-dropdown-expenses" value="savings">Retirement savings</option>
+        <option class="nested-dropdown-expenses" value="savings">Investments</option>
+        <option class="nested-dropdown-expenses" value="education-expenses">Childcare or daycare costs</option>
+        <option class="nested-dropdown-expenses" value="education-expenses">School fees and supplies</option>
+        <option class="nested-dropdown-expenses" value="education-expenses">Extracurricular activities</option>
+        <option class="nested-dropdown-expenses" value="groceries-expenses">Grocery shopping</option>
+        <option class="nested-dropdown-expenses" value="groceries-expenses">Toiletries and personal care items</option>
+        <option class="nested-dropdown-expenses" value="groceries-expenses">Cleaning supplies</option>
+        <option class="nested-dropdown-expenses" value="transportations-expenses">Fuel</option>
+        <option class="nested-dropdown-expenses" value="transportations-expenses">Maintenance and repair</option>
+        <option class="nested-dropdown-expenses" value="transportations-expenses">Insurance</option>
+        <option class="nested-dropdown-expenses" value="transportations-expenses">Public transportation costs</option>
+        <option class="nested-dropdown-expenses" value="transportations-expenses">Other-option</option>
+        <option class="nested-dropdown-expenses" value="health-care-expenses">Medical expenses not covered by insurance</option>
+        <option class="nested-dropdown-expenses" value="health-care-expenses">Prescritions medications</option>
+        <option class="nested-dropdown-expenses" value="health-care-expenses">Mental health - therapy</option>
+        <option class="nested-dropdown-expenses" value="clothing-and-personal-expenses">Clothing purchases</option>
+        <option class="nested-dropdown-expenses" value="clothing-and-personal-expenses">Haircuts and personal expenses</option>
+        <option class="nested-dropdown-expenses" value="miscellaneous-expenses">Home maintenance and repairs</option>
+        <option class="nested-dropdown-expenses" value="miscellaneous-expenses">Gifts & celebrations</option>
+        <option class="nested-dropdown-expenses" value="miscellaneous-expenses">Miscellaneous or unexpected expenses</option>
+        <option class="nested-dropdown-expenses" value="insurance-expenses">Life insurance</option>
+        <option class="nested-dropdown-expenses" value="insurance-expenses">Other insurance policies</option>
+        <option class="nested-dropdown-expenses" value="taxes-expenses">Income taxes</option>
+        <option class="nested-dropdown-expenses" value="taxes-expenses">Property taxes</option>
+      </select>
+      <select class="nested-dropdown-entertainment" id="nested-streaming-dropdown-expenses">
+        <option class="nested-dropdown-entertainment--options" value="nested-streaming">Streaming Services</option>
+          <option class="nested-dropdown-entertainment-expenses" value="nested-streaming">Netflix</option>
+          <option class="nested-dropdown-entertainment-expenses" value="nested-streaming">Disney+</option>
+          <option class="nested-dropdown-entertainment-expenses" value="nested-streaming">Spotify</option>
+          <option class="nested-dropdown-entertainment-expenses" value="nested-streaming">Apple Music</option>
+          <option class="nested-dropdown-entertainment-expenses" value="nested-streaming">Voxa</option>
+          <option class="nested-dropdown-entertainment-expenses" value="nested-streaming">Other-option</option>
+      </select>
+
+      <select class="dropdown-option" aria-label="Small select">
+        <option class="d-option" selected>Expense frequency:</option>
+        <option class="d-option" value="bi-monthly">Bi-monthly</option>
+        <option class="d-option" value="monthly">Monthly</option>
+        <option class="d-option" value="quarterly">Quarterly</option>
+        <option class="d-option" value="semi-annual">Semi-annual</option>
+        <option class="d-option" value="annual">Annual</option>
+        <option class="d-option" value="other-option">Other option</option>
+        <input type="date" class="dropdown-option" id="expenses-date" required placeholder="expense-date">
+      </select>
+      <button id="add-expenses-btn" class="button">ADD Expense</button>
+      <ul id="expenses-list" class="user-output"></ul>
+    </main>
+</section>
 </body>
 </html>
