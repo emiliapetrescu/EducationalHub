@@ -14,10 +14,10 @@ section.app-box {
     justify-content: start;
 }
 
-main.finances-budget-app {
+/*main.finances-budget-app {
     /*display: flex;
     flex-direction: column;*/
-    align-self: flex-start;
+    /*align-self: flex-start;
     border-radius: 30px;
     padding: 2rem;
     margin-top: 6rem;
@@ -29,8 +29,9 @@ main.finances-budget-app {
     color: var(--text-buget-color);
     box-shadow: 2px 2px 2px 2px #ccc;
     animation: fadeIn 1.5s ease-in;
-}
+}*/
 
+main.finances-budget-app,
 main.income-register,
 main.expenses-register {
     display: flex;

@@ -1,39 +1,29 @@
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('dom loaded');
+
     const mainDropdown = document.getElementById('main-expenses-dropdown');
-    const nestedDropdowns = {};
+    const nestedDropdown = document.getElementById('nested-expenses-dropdown');
+    const originalOptions = Array.from(nestedDropdown.options);
 
-    mainDropdown.addEventListener('change', (event)=>{
-        const selectedValue = event.target.value;
+    const combineHandler = () => {
+        nestedDropdown.innerHTML = '';
+        const selectedValue = mainDropdown.value;
         console.log(selectedValue);
-        hideNestedDropdowns();
-        showNestedDropdowns(selectedValue);
-    });
 
-    document.querySelectorAll('.nested-dropdown--options')
-        .forEach((nestedDropdown)=>{
-        nestedDropdowns[nestedDropdown.value] = nestedDropdown;
-    });
+        originalOptions.forEach(originalOption => {
+            if(
+                originalOption.value.startsWith(selectedValue) ||
+                originalOption.value === 'Select category:') {
+                    const newOption = originalOption.cloneNode(true);
+                    nestedDropdown.add(newOption);  
+                }
+        });
+    };
 
-    const hideNestedDropdowns = () => {
-        for(const key in nestedDropdowns) {
-            nestedDropdowns[key].style.display = 'none';
-        }
-    }
-    
-    const showNestedDropdowns = (selectedOption) => {
-        const nestedDropdown = nestedDropdowns[selectedOption];
-        console.log(nestedDropdown);
-        if (nestedDropdown) {
-            nestedDropdown.style.display = 'block';
-        }
-    }   
+    mainDropdown.addEventListener('change', combineHandler);
 
-   
-    console.log(nestedDropdowns);
-    console.log(mainDropdown.options);
-    
-    
-});
+});   
+  
 
 
 
