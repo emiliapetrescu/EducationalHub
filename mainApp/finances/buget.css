@@ -14,33 +14,31 @@ section.app-box {
     justify-content: start;
 }
 
-/*main.finances-budget-app {
-    /*display: flex;
-    flex-direction: column;*/
-    /*align-self: flex-start;
+main.finances-budget-app {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     border-radius: 30px;
     padding: 2rem;
     margin-top: 6rem;
-    margin-left: 3rem;
-    width: 20rem;
-    max-width: 30%;
+    margin-left: 2rem;
+    width: 18rem;
     border: 0.2rem solid var(--border-color);
     background:var(--button-hover-color);
     color: var(--text-buget-color);
     box-shadow: 2px 2px 2px 2px #ccc;
     animation: fadeIn 1.5s ease-in;
-}*/
+}
 
-main.finances-budget-app,
-main.income-register,
-main.expenses-register {
+main.income-register{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     border-radius: 30px;
     padding: 2rem;
     margin-top: 6rem;
-    margin-left: 5rem;
-    width: 25rem;
+    margin-left: 3rem;
+    width: 20rem;
     max-width: 25%;
     border: 0.2rem solid var(--border-color);
     background:var(--button-hover-color);
@@ -49,14 +47,24 @@ main.expenses-register {
     animation: fadeIn 1.5s ease-in;
 }
 
-h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    animation: moveLeftAndRight 2s ease-in-out;
-    text-shadow: 1px 1px 1px var(--button-color);
-    margin-left: 0.9rem;
+main.expenses-register{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-radius: 30px;
+    padding: 2rem;
+    margin-top: 6rem;
+    margin-left: 3rem;
+    width: 23rem;
+    max-width: 30%;
+    border: 0.2rem solid var(--border-color);
+    background:var(--button-hover-color);
+    color: var(--text-buget-color);
+    box-shadow: 2px 2px 2px 2px #ccc;
+    animation: fadeIn 1.5s ease-in;
 }
 
+h1,
 h2,
 .income-types,
 .expenses-types{
@@ -67,26 +75,17 @@ h2,
     animation: moveLeftAndRight 1.5s ease-in-out;
 }
 
-.inputs,
-.dropdown-option {
-    display: flex;
-    align-self: flex-start;
-    margin: 1rem;
-    padding: 0.2rem;
-    border-radius: 5px;
+.label-inputs{
     font-weight: bold;
 }
 
-#incomes-list.visible,
-#expenses-list.visible {
-    display: block;
-}
-
-#incomes-list,
-#expenses-list {
-    display: none;
-    list-style: none;
-    padding: 1rem;
+.inputs {
+    display: flex;
+    align-self: flex-start;
+    margin: 1rem;
+    padding: 0.1rem;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 .button{
@@ -113,21 +112,17 @@ h2,
     section.app-box {
         flex-direction: row;
         justify-content: space-around;
-        flex-wrap: wrap;
-      
+        flex-wrap: wrap; 
     }
 
     main.finaces-budget-app,
-    main.income-register {
-        max-width: 20rem;
-    }
-
+    main.income-register,
     main.expenses-register {
-      flex-direction: column;
-      align-self: self-start;
-      justify-self: flex-end;
-      max-width: 20rem;
-      width: 100%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-self: self-start;
+        min-width: 19rem;
+        width: 100%;
     }
 }
 
