@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('dom loaded');
-
-    document.getElementById('add-income-btn').addEventListener('click', ()=>{
+//monthly budget vreau sa preia income types si sa faca totalul veniturilor dintr o luna
+// cumva trebuie preluate si cheltuielile tot in monthly
+    
+    
+    const addIncomeHandler = ()=> {
         const incomeType = document.getElementById('income-type').value;
         const incomeFrequency = document.getElementById('income-frequency').value;
         const incomeAmount = document.getElementById('income-amount').value;
@@ -28,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         cell4.textContent = incomeDate;
 
         document.getElementById('income-table-container').style.display = 'block';
-    });
+    };
+    
+    document.getElementById('add-income-btn').addEventListener('click', addIncomeHandler);
 
     const mainDropdown = document.getElementById('main-expenses-dropdown');
     const nestedDropdown = document.getElementById('nested-expenses-dropdown');
@@ -50,10 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     mainDropdown.addEventListener('change', combineHandler);
-
 });   
 
-document.addEventListener('DOMContentLoaded', () =>{
     const TOTAL_INCOMES_BTN = document.getElementById('total-income-btn');
     const RESULT_DISPLAY = document.getElementById('resultDisplay');
    
@@ -81,5 +84,4 @@ document.addEventListener('DOMContentLoaded', () =>{
             RESULT_DISPLAY.value = result;
         }
     });
-});
 

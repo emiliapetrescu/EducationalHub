@@ -77,6 +77,7 @@ h2,
 
 .label-inputs{
     font-weight: bold;
+    padding-left: 1rem;
 }
 
 .inputs {
@@ -108,7 +109,7 @@ h2,
     border: 3px solid var(--background-buget);
 }
 
-.income-table{
+#income-table-container{
     display: none;
 }
 
@@ -121,7 +122,7 @@ h2,
     margin-top: 0.5rem;
     margin-left: 2rem;
     margin-bottom: 1rem;
-    width: 32rem;
+    width: 35rem;
     max-width: 45%;
     border: 0.1rem solid var(--border-color);
     background:var(--light-blue);
