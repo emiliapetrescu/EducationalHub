@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-        --background-buget: #E07A5F;
-        --text-buget-color: #3D405B;
-        --border-color:#3D405B;
-        --button-color: #F4F1DE;
-        --button-hover-color: #81B29A;
-        --button-hover-background: #F1FAEE;
+       --strong:#E63946;
+       --light:#F1FAEE;
+       --light-blue:#A8DADC;
+       --medium-blue:#457B9D;
+       --dark-blue:#1D3557;
 }
 
 section.app-box {
@@ -24,9 +23,9 @@ main.finances-budget-app {
     margin-left: 2rem;
     width: 18rem;
     border: 0.2rem solid var(--border-color);
-    background:var(--button-hover-color);
-    color: var(--text-buget-color);
-    box-shadow: 2px 2px 2px 2px #ccc;
+    background:var(--medium-blue);
+    color: var(--light);
+    box-shadow: 2px 2px 2px 2px var(--light-blue);
     animation: fadeIn 1.5s ease-in;
 }
 
@@ -41,9 +40,9 @@ main.income-register{
     width: 20rem;
     max-width: 25%;
     border: 0.2rem solid var(--border-color);
-    background:var(--button-hover-color);
-    color: var(--text-buget-color);
-    box-shadow: 2px 2px 2px 2px #ccc;
+    background:var(--light-blue);
+    color: var(--dark-blue);
+    box-shadow: 2px 2px 2px 2px var(--medium-blue);
     animation: fadeIn 1.5s ease-in;
 }
 
@@ -58,11 +57,12 @@ main.expenses-register{
     width: 23rem;
     max-width: 30%;
     border: 0.2rem solid var(--border-color);
-    background:var(--button-hover-color);
-    color: var(--text-buget-color);
-    box-shadow: 2px 2px 2px 2px #ccc;
+    background:var(--light-blue);
+    color: var(--dark-blue);
+    box-shadow: 2px 2px 2px 2px var(--medium-blue);
     animation: fadeIn 1.5s ease-in;
 }
+
 
 h1,
 h2,
@@ -93,8 +93,8 @@ h2,
     font-weight: bold;
     border-radius: 5px;
     border: 3px solid var(--border-color);
-    background: var(--button-color);
-    color: var(--text-buget-color);
+    background:var(--light);
+    color: var(--dark-blue);
     padding: 0.5rem;
     margin-left: 0.9rem;;
     cursor: pointer;
@@ -103,10 +103,38 @@ h2,
 
 .button:hover,
 .button:active {
-    background:var(--border-color);
-    color: var(--button-color);
+    background:var(--strong);
+    color: var(--light);
     border: 3px solid var(--background-buget);
 }
+
+.income-table{
+    display: none;
+}
+
+.income-table{
+    display: flex;
+    flex-direction: row;
+    align-self: start;;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    width: 32rem;
+    max-width: 45%;
+    border: 0.1rem solid var(--border-color);
+    background:var(--light-blue);
+    color: var(--dark-blue);
+    box-shadow: 2px 2px 2px 2px #ccc;
+    animation: fadeIn 1.5s ease-in;
+}
+
+th, td{
+    padding: 0 1rem;
+    text-align: center;
+}
+
 
 @media (max-width: 77rem) {
     section.app-box {

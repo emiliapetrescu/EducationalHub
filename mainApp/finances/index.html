@@ -42,7 +42,7 @@
     
       <main class="income-register">
         <label class="income-types">Income Types:</label>
-        <select class=" inputs inputs dropdown-option" aria-label="Large select">
+        <select id="income-type" class="inputs dropdown-option" aria-label="Large select">
           <option class="inputs dropdown-option" selected>Income type:</option>
           <option class="inputs dropdown-option" value="salary">Salary</option>
           <option class="inputs dropdown-option" value="self-employment-income">Self-employment income</option>
@@ -55,7 +55,7 @@
           <input type="text" class="inputs dropdown-option" id="income-amount" required placeholder="amount">
         </select>
         
-        <select class="inputs dropdown-option" aria-label="Small select">
+        <select id="income-frequency" class="inputs dropdown-option" aria-label="Small select">
           <option class="inputs dropdown-option" selected>Income frequency:</option>
           <option class="inputs dropdown-option" value="bi-monthly">Bi-monthly</option>
           <option class="inputs dropdown-option" value="monthly">Monthly</option>
@@ -64,9 +64,9 @@
           <option class="inputs dropdown-option" value="annual">Annual</option>
           <option class="inputs dropdown-option" value="other-option">Other option</option>
           <input type="date" class="inputs dropdown-option" id="income-date" required placeholder="income date">
+          
         </select>
         <button id="add-income-btn" class="button">ADD Income</button>
-        <ul id="incomes-list" class="user-output"></ul>
     </main>
 
     <main class="expenses-register">
@@ -137,7 +137,7 @@
         <option class="inputs nested-dropdown-expensess" value="taxes-expenses">Income taxes</option>
         <option class="inputs nested-dropdown-expensess" value="taxes-expenses">Property taxes</option>
       </select>
-
+      <input type="text" class="inputs dropdown-option" id="expense-amount" required placeholder="amount">
       <select class="inputs dropdown-option" aria-label="Small select">
         <option class="d-option" selected>Expense frequency:</option>
         <option class="d-option" value="bi-monthly">Bi-monthly</option>
@@ -151,6 +151,20 @@
       <button id="add-expenses-btn" class="button">ADD Expense</button>
       <ul id="expenses-list" class="user-output"></ul>
     </main>
+
 </section>
+<div class="income-table" id="income-table-container">
+  <table id="incomes-list" class="income-register-output">
+    <thead>
+      <tr>
+        <th>Income Types</th><br>
+        <th>Income Frequency</th><br>
+        <th>Income Amount</th>
+        <th>Income Date</th>
+      </tr>
+    </thead>
+    <tbody id="income-table-body"></tbody>
+  </table>
+</div>
 </body>
 </html>

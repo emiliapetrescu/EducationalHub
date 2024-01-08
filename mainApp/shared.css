@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,300;1,300&display=swap');
 
 :root {
-    --menu-background: #3D405B;
+    --menu-background: #1D3557;
     --secondary-background: #81B29A;
-    --text-color: #F4F1DE;
+    --text-color: #F1FAEE;
 }
 
 html,
