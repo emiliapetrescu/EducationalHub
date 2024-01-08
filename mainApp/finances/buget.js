@@ -2,43 +2,53 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('dom loaded');
 //monthly budget vreau sa preia income types si sa faca totalul veniturilor dintr o luna
 // cumva trebuie preluate si cheltuielile tot in monthly
-    
-    
-    const addIncomeHandler = ()=> {
-        const incomeType = document.getElementById('income-type').value;
-        const incomeFrequency = document.getElementById('income-frequency').value;
-        const incomeAmount = document.getElementById('income-amount').value;
-        const incomeDate = document.getElementById('income-date').value;
 
-        if(incomeAmount === '' ||
-            incomeType === 'Income Type' ||
-            incomeFrequency === '' ||
-            incomeDate === 'mm/dd/yyyy') {
-                alert('Please insert values in all fields');
-                return;
-            };
+const tableBody = document.getElementById('income-table-body');
+const mainDropdown = document.getElementById('main-expenses-dropdown');
+const nestedDropdown = document.getElementById('nested-expenses-dropdown');
+const initialOptions = Array.from(nestedDropdown.options);
+const TOTAL_INCOMES_BTN = document.getElementById('total-income-btn');
+const RESULT_DISPLAY = document.getElementById('resultDisplay');
 
-        const tableBody = document.getElementById('income-table-body');
-        const newRow = tableBody.insertRow();
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-        const cell4 = newRow.insertCell(3);
+const incomeInputLabels = {
+    'income-type': 'Income Type',
+    'income-frequency': 'Income Frequency',
+    'income-amount': 'Income Amount',
+    'income-date': 'Income Date',
+};
+
+const addIncomeHandler = ()=> {
+    const inputIds = ['income-type', 'income-frequency', 'income-amount', 'income-date' ];
         
-        cell1.textContent = incomeType;
-        cell2.textContent = incomeFrequency;
-        cell3.textContent = incomeAmount;
-        cell4.textContent = incomeDate;
+    const newRow = tableBody.insertRow();
+    let userInput = true;
+
+    inputIds.forEach((inputId, index) => {
+        const inputValue = document.getElementById(inputId).value;
+
+        if (
+            inputValue === '' ||
+            (index < 2 && inputValue === incomeInputLabels[inputId])) {
+            alert (`Please provide a valid value for ${incomeInputLabels[inputId]}`);
+            userInput = false;
+            return;
+            }
+        });
+
+        if(userInput) {
+            const newRow = tableBody.insertRow();
+
+            inputIds.forEach((inputId, index) => {
+                const inputValue = document.getElementById(inputId).value;
+                const cell = newRow.insertCell(index);
+                cell.textContent = inputValue;
+            });
 
         document.getElementById('income-table-container').style.display = 'block';
+        
+        } 
     };
     
-    document.getElementById('add-income-btn').addEventListener('click', addIncomeHandler);
-
-    const mainDropdown = document.getElementById('main-expenses-dropdown');
-    const nestedDropdown = document.getElementById('nested-expenses-dropdown');
-    const initialOptions = Array.from(nestedDropdown.options);
-
     const combineHandler = () => {
         nestedDropdown.innerHTML = '';
         const selectedValue = mainDropdown.value;
@@ -54,11 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    mainDropdown.addEventListener('change', combineHandler);
-});   
 
-    const TOTAL_INCOMES_BTN = document.getElementById('total-income-btn');
-    const RESULT_DISPLAY = document.getElementById('resultDisplay');
+    document.getElementById('add-income-btn').addEventListener('click', addIncomeHandler);
+    mainDropdown.addEventListener('change', combineHandler);
    
     let totalIncomes = () => {
         let SALARY1 = parseInt(document.getElementById('salary_1').value);
@@ -85,3 +93,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+});  
