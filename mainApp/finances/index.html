@@ -50,8 +50,8 @@
           <option class="inputs dropdown-option" value="investment-income">Investment income</option>
           <option class="inputs dropdown-option" value="rental-income">Rental income</option>
           <option class="inputs dropdown-option" value="child-support-allowance">Child support allowance</option>
-          <option class="inputs inputs dropdown-option" value="government-assistance">Government assistance</option>
-          <option class="inputs inputs dropdown-option" value="retirement-income">Retirement income</option>
+          <option class="inputs dropdown-option" value="government-assistance">Government assistance</option>
+          <option class="inputs dropdown-option" value="retirement-income">Retirement income</option>
           <input type="text" class="inputs dropdown-option" id="income-amount" required placeholder="amount">
         </select>
         
@@ -139,7 +139,7 @@
       </select>
       <input type="text" class="inputs dropdown-option" id="expense-amount" required placeholder="amount">
       <select class="inputs dropdown-option" aria-label="Small select">
-        <option class="d-option" selected>Expense frequency:</option>
+        <option class="d-option" id="expense-frequency" selected>Expense frequency:</option>
         <option class="d-option" value="bi-monthly">Bi-monthly</option>
         <option class="d-option" value="monthly">Monthly</option>
         <option class="d-option" value="quarterly">Quarterly</option>
@@ -153,18 +153,35 @@
     </main>
 
 </section>
-<div class="income-table" id="income-table-container">
-  <table id="incomes-list" class="income-register-output">
-    <thead>
-      <tr>
-        <th>Income Types</th><br>
-        <th>Income Frequency</th><br>
-        <th>Income Amount</th>
-        <th>Income Date</th>
-      </tr>
-    </thead>
-    <tbody id="income-table-body"></tbody>
-  </table>
-</div>
+<section class="tables">
+  <div class="income-table" id="income-table-container">
+    <table id="incomes-list" class="income-register-output">
+      <thead>
+        <tr>
+          <th>Income Types</th><br>
+          <th>Income Frequency</th><br>
+          <th>Income Amount</th>
+          <th>Income Date</th>
+        </tr>
+      </thead>
+      <tbody id="income-table-body"></tbody>
+    </table>
+  </div>
+
+  <div class="expense-table" id="expense-table-container">
+    <table id="expense-list" class="expense-register-output">
+      <thead>
+        <tr>
+          <th>Expense Type</th>
+          <th>Category</th>
+          <th>Expense Frequency</th>
+          <th>Expense Amount</th>
+          <th>Expense Date</th>
+        </tr>
+      </thead>
+      <tbody id="expense-table-body"></tbody>
+    </table>
+  </div>
+</section>
 </body>
 </html>

@@ -1,72 +1,114 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('dom loaded');
-//monthly budget vreau sa preia income types si sa faca totalul veniturilor dintr o luna
-// cumva trebuie preluate si cheltuielile tot in monthly
 
-const tableBody = document.getElementById('income-table-body');
-const mainDropdown = document.getElementById('main-expenses-dropdown');
-const nestedDropdown = document.getElementById('nested-expenses-dropdown');
-const initialOptions = Array.from(nestedDropdown.options);
-const TOTAL_INCOMES_BTN = document.getElementById('total-income-btn');
-const RESULT_DISPLAY = document.getElementById('resultDisplay');
+    const incomeTableBody = document.getElementById('income-table-body');
+    const expenseTableBody = document.getElementById('expense-table-body');
+    const mainDropdown = document.getElementById('main-expenses-dropdown');
+    const nestedDropdown = document.getElementById('nested-expenses-dropdown');
+    const initialOptions = Array.from(nestedDropdown.options);
+    const TOTAL_INCOMES_BTN = document.getElementById('total-income-btn');
+    const RESULT_DISPLAY = document.getElementById('resultDisplay');
 
-const incomeInputLabels = {
-    'income-type': 'Income Type',
-    'income-frequency': 'Income Frequency',
-    'income-amount': 'Income Amount',
-    'income-date': 'Income Date',
-};
-
-const addIncomeHandler = ()=> {
-    const inputIds = ['income-type', 'income-frequency', 'income-amount', 'income-date' ];
-        
-    const newRow = tableBody.insertRow();
-    let userInput = true;
-
-    inputIds.forEach((inputId, index) => {
-        const inputValue = document.getElementById(inputId).value;
-
-        if (
-            inputValue === '' ||
-            (index < 2 && inputValue === incomeInputLabels[inputId])) {
-            alert (`Please provide a valid value for ${incomeInputLabels[inputId]}`);
-            userInput = false;
-            return;
-            }
-        });
-
-        if(userInput) {
-            const newRow = tableBody.insertRow();
-
-            inputIds.forEach((inputId, index) => {
-                const inputValue = document.getElementById(inputId).value;
-                const cell = newRow.insertCell(index);
-                cell.textContent = inputValue;
-            });
-
-        document.getElementById('income-table-container').style.display = 'block';
-        
-        } 
+    const inputLabels = {
+        'income-type': 'Income Type',
+        'income-frequency': 'Income Frequency',
+        'income-amount': 'Income Amount',
+        'income-date': 'Income Date',
+        'expense-type': 'Expense Type',
+        'expense-category': 'Select category',
+        'expense-frequency': 'Expense Frequency',
+        'expense-amount': 'Expense Amount',
+        'expense-date': 'Expense Date',
     };
-    
+
     const combineHandler = () => {
         nestedDropdown.innerHTML = '';
         const selectedValue = mainDropdown.value;
         console.log(selectedValue);
 
         initialOptions.forEach(initialOption => {
-            if(
+            if (
                 initialOption.value.startsWith(selectedValue) ||
-                initialOption.value === 'Select category:') {
-                    const newOption = initialOption.cloneNode(true);
-                    nestedDropdown.add(newOption);  
-                }
+                initialOption.value === 'Select category:'
+            ) {
+                const newOption = initialOption.cloneNode(true);
+                nestedDropdown.add(newOption);
+            }
         });
     };
 
+    const addRecordHandler = (inputIds, tableBody, containerId) => {
+        let userInput = true;
+        const newRow = tableBody.insertRow();
+    
+        inputIds.forEach((inputId, index) => {
+            const inputElement = document.getElementById(inputId);
+    
+            if (!inputElement) {
+                console.error(`Element with ID ${inputId} not found.`);
+                userInput = false;
+                return;
+            }
+    
+            if (inputId !== 'expense-amount' && inputId !== 'expenses-date') {
+                const cell = newRow.insertCell(index);
+                cell.textContent = inputElement.value;
+            }
+        });
+    
+        // Handle 'expense-amount' separately
+        const expenseAmount = document.getElementById('expense-amount').value;
+        const amountCell = newRow.insertCell(-1);
+        amountCell.textContent = expenseAmount;
+    
+        // Handle 'expenses-date' separately
+        const expensesDate = document.getElementById('expenses-date').value;
+        const dateCell = newRow.insertCell(-1);
+        dateCell.textContent = expensesDate;
+    
+        if (userInput) {
+            document.getElementById(containerId).style.display = 'block';
+        }
+        console.log(document.documentElement.outerHTML);
+    };
+    
+    
+    const addIncomeRecord = () => {
+        const inputIds = ['income-type', 'income-frequency', 'income-amount', 'income-date'];
+        addRecordHandler(inputIds, incomeTableBody, 'income-table-container');
+    };
 
-    document.getElementById('add-income-btn').addEventListener('click', addIncomeHandler);
+   
+
+    const addExpenseRecord = () => {
+        const inputIds = ['main-expenses-dropdown', 'nested-expenses-dropdown', 'expense-frequency', 'expense-amount', 'expenses-date'];//aici trebuie schimbat
+        
+        const isElementsPresent = inputIds.every(inputId => {
+            const inputElement = document.getElementById(inputId);
+            if (!inputElement) {
+                console.error(`Element with ID ${inputId} not found.`);
+                return false;
+            }
+            return true;
+        });
+    
+        if (!isElementsPresent) {
+            console.error('Some required elements are missing.');
+            return;
+        }
+        
+        addRecordHandler(inputIds, expenseTableBody, 'expense-table-container');
+    }
+
+    combineHandler();
+
+    
+
     mainDropdown.addEventListener('change', combineHandler);
+    document.getElementById('add-income-btn').addEventListener('click', addIncomeRecord);
+    document.getElementById('add-expenses-btn').addEventListener('click', addExpenseRecord);
+
+    
    
     let totalIncomes = () => {
         let SALARY1 = parseInt(document.getElementById('salary_1').value);

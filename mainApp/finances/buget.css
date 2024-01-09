@@ -11,6 +11,8 @@
 section.app-box {
     display: flex;
     justify-content: start;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 main.finances-budget-app {
@@ -109,14 +111,16 @@ h2,
     border: 3px solid var(--background-buget);
 }
 
-#income-table-container{
+#income-table-container, 
+#expense-table-container{
     display: none;
 }
 
-.income-table{
+.income-table,
+.expense-table {
     display: flex;
     flex-direction: row;
-    align-self: start;;
+    align-self: start;
     border-radius: 15px;
     padding: 1rem;
     margin-top: 0.5rem;
@@ -136,6 +140,11 @@ th, td{
     text-align: center;
 }
 
+.tables{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
 
 @media (max-width: 77rem) {
     section.app-box {
