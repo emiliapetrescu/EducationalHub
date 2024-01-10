@@ -111,6 +111,11 @@ h2,
     border: 3px solid var(--background-buget);
 }
 
+.tables{
+    display: flex;
+    justify-content: space-around;
+}
+
 #income-table-container, 
 #expense-table-container{
     display: none;
@@ -138,12 +143,6 @@ h2,
 th, td{
     padding: 0 1rem;
     text-align: center;
-}
-
-.tables{
-    display: flex;
-    flex-direction:row;
-    justify-content: space-around;
 }
 
 @media (max-width: 77rem) {
