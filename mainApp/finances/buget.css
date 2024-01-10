@@ -118,9 +118,8 @@ h2,
 
 .income-table,
 .expense-table {
-    display: flex;
-    flex-direction: row;
-    align-self: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border-radius: 15px;
     padding: 1rem;
     margin-top: 0.5rem;
@@ -133,6 +132,7 @@ h2,
     color: var(--dark-blue);
     box-shadow: 2px 2px 2px 2px #ccc;
     animation: fadeIn 1.5s ease-in;
+    vertical-align: middle;
 }
 
 th, td{
