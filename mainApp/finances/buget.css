@@ -128,8 +128,8 @@ h2,
     margin-top: 0.5rem;
     margin-left: 2rem;
     margin-bottom: 1rem;
-    width: 40rem;
-    max-width: 45%;
+    width: 45rem;
+    max-width: 50%;
     border: 0.1rem solid var(--border-color);
     background:var(--light-blue);
     color: var(--dark-blue);
@@ -148,7 +148,7 @@ h2,
 }
 
 th, td{
-    padding: 0 1rem;
+    padding: 0.2rem 1rem;
     text-align: center;
 }
 
