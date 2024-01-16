@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const getElement = (id) => document.getElementById(id);
     const addIncomeBtn = getElement('add-income-btn');
     const addExpenseBtn = getElement('add-expenses-btn');
-    const incomeTableBody = getElement('income-table-body');
-    const expenseTableBody = getElement('expense-table-body');
+    const combinedTableContainer = getElement('combined-table-container');
+    const combinedTableBody = getElement('combined-list');
+    const categoryHeader = getElement('category-header');
     const mainDropdown = getElement('main-expenses-dropdown');
     const nestedDropdown = getElement('nested-expenses-dropdown');
     const initialOptions = Array.from(nestedDropdown.options);
@@ -27,45 +28,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 nestedDropdown.add(newOption);
             }
         });
-    };
 
-    const addRecordHandler = (inputIds, tableBody, containerId) => {
-        let userInput = true;
-        const newRow = tableBody.insertRow();
-
-        inputIds.forEach((inputId, index) => {
-            const inputElement = getElement(inputId);
-
-            const cell = newRow.insertCell(index);
-
-            if (inputElement.tagName === 'SELECT') {
-                cell.textContent = inputElement.options[inputElement.selectedIndex].text;
-            } else {
-                cell.textContent = inputElement.value;
-            }
-        });
-
-        if (userInput) {
-            getElement(containerId).style.display = 'block';
+        if (categoryHeader) {
+            categoryHeader.style.display = selectedValue === 'expense' ? 'table-cell' : 'none';
+        } else {
+            console.error('categoryHeader not found');
         }
     };
 
-    const addIncomeRecord = () => {
-        const inputIds = ['income-type', 'income-frequency', 'income-amount', 'income-date'];
-        addRecordHandler(inputIds, incomeTableBody, 'income-table-container');
+    const addCombinedRecordHandler = (inputIds, isIncome) => {
+        console.log('Adding combined record:', inputIds, isIncome);
+        const newRow = combinedTableBody.insertRow();
+        const inputElements = inputIds.map(id => getElement(id));
+    
+        inputElements.forEach((inputElement, index) => {
+            const cell = newRow.insertCell(index);
+    
+            if (index === 0) {
+                cell.textContent = isIncome ? inputElement.value : '-';
+            } else if (index === 1) {
+                cell.textContent = '-';
+            } else if (index === 2) {
+                cell.textContent = isIncome ? inputElements[1].value : inputElement.value;
+            } else {
+                cell.textContent = inputElement.tagName === 'SELECT' ?
+                    inputElement.options[inputElement.selectedIndex].text :
+                    inputElement.value;
+            }
+    
+            cell.classList.add(isIncome ? 'income-cell' : 'expense-cell');
+    
+            if (index === 3) {
+                cell.classList.add(isIncome ? 'income-amount' : 'expense-amount');
+            }
+        });
+    
+        newRow.className = isIncome ? 'income' : 'expense';
         updateMonthlyBudget();
+    
+        console.log('Table content:', Array.from(combinedTableBody.getElementsByTagName('tr')).map(row => Array.from(row.cells).map(cell => cell.textContent)));
+    };
+    
+    const addIncomeRecord = () => {
+        const inputIds = [
+                        'income-type',
+                        'income-frequency', 
+                        'income-amount', 
+                        'income-date'
+                    ];
+                    
+        addCombinedRecordHandler(inputIds, true);
+        updateMonthlyBudget();
+       
+        combinedTableContainer.style.display = 'block';
     };
 
     const addExpenseRecord = () => {
-        const inputIds = ['main-expenses-dropdown', 'nested-expenses-dropdown', 'expense-frequency', 'expense-amount', 'expenses-date'];
+        const inputIds = [
+                        'main-expenses-dropdown', 
+                        'nested-expenses-dropdown', 
+                        'expense-frequency', 
+                        'expense-amount', 
+                        'expenses-date'
+                    ];
 
-        addRecordHandler(inputIds, expenseTableBody, 'expense-table-container');
+        addCombinedRecordHandler(inputIds, false);
         updateMonthlyBudget();
+
+        combinedTableContainer.style.display = 'block';
     };
 
     const updateMonthlyBudget = () => {
-        const totalIncomesValue = calculateTotalIncomes();
-        const totalExpensesValue = calculateTotalExpenses();
+        const totalIncomesValue = calculateTotal('income');
+        const totalExpensesValue = calculateTotal('expense');
 
         totalIncomes.value = totalIncomesValue;
         totalExpenses.value = totalExpensesValue;
@@ -74,32 +109,28 @@ document.addEventListener('DOMContentLoaded', () => {
         balanceResult.value = balanceValue;
     };
 
-    const calculateTotalIncomes = () => {
-        const incomeRows = Array.from(incomeTableBody.getElementsByTagName('tr'));
+    const calculateTotal = (recordType) => {
+        const rows = Array.from(combinedTableBody.getElementsByTagName('tr'));
+    
+        const total = rows.reduce((sum, row) => {
+            const cells = Array.from(row.cells);
 
-        const totalIncomes = incomeRows.reduce((sum, row) => {
-            const incomeAmountCell = row.cells[2]; //modify for dynamic values
-            const incomeAmount = parseFloat(incomeAmountCell.textContent) || 0;
-            return sum + incomeAmount;
+            const amountCell = cells.length > 2 ? cells[2] : null;
+
+        if (amountCell && amountCell.classList.contains(`${recordType}-amount`)) {
+            const amount = parseFloat(amountCell.textContent) || 0;
+            return sum + amount;
+        }
+
+        return sum;
+            
         }, 0);
-
-        return totalIncomes;
-    };
-
-    const calculateTotalExpenses = () => {
-        const expenseRows = Array.from(expenseTableBody.getElementsByTagName('tr'));
-
-        const totalExpenses = expenseRows.reduce((sum, row) => {
-            const expenseAmountCell = row.cells[3]; //modify for dynamic values
-            const expenseAmount = parseFloat(expenseAmountCell.textContent) || 0;
-            return sum + expenseAmount;
-        }, 0);
-
-        return totalExpenses;
+    
+        console.log(`Total ${recordType}s:`, total);
+        return total;
     };
 
     mainDropdown.addEventListener('change', combineHandler);
     addIncomeBtn.addEventListener('click', addIncomeRecord);
     addExpenseBtn.addEventListener('click', addExpenseRecord);
-    updateMonthlyBudget();
 });

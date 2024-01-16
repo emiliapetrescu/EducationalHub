@@ -116,13 +116,11 @@ h2,
     justify-content: space-around;
 }
 
-#income-table-container, 
-#expense-table-container{
+#combined-table-container {
     display: none;
 }
 
-.income-table,
-.expense-table {
+.combined-table {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border-radius: 15px;
@@ -138,6 +136,14 @@ h2,
     box-shadow: 2px 2px 2px 2px #ccc;
     animation: fadeIn 1.5s ease-in;
     vertical-align: middle;
+}
+
+.income-cell {
+    color: green;  
+}
+
+.expense-cell {
+    color: red; 
 }
 
 th, td{
