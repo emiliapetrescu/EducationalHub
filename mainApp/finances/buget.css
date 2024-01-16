@@ -139,11 +139,12 @@ h2,
 }
 
 .income-cell {
-    color: green;  
+    font-weight: bold;
 }
 
 .expense-cell {
-    color: red; 
+    color: var(--strong); 
+    font-weight: bold;
 }
 
 th, td{

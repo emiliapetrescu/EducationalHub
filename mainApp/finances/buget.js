@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const addExpenseBtn = getElement('add-expenses-btn');
     const combinedTableContainer = getElement('combined-table-container');
     const combinedTableBody = getElement('combined-list');
-    const categoryHeader = getElement('category-header');
     const mainDropdown = getElement('main-expenses-dropdown');
     const nestedDropdown = getElement('nested-expenses-dropdown');
     const initialOptions = Array.from(nestedDropdown.options);
@@ -28,16 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 nestedDropdown.add(newOption);
             }
         });
-
-        if (categoryHeader) {
-            categoryHeader.style.display = selectedValue === 'expense' ? 'table-cell' : 'none';
-        } else {
-            console.error('categoryHeader not found');
-        }
     };
 
     const addCombinedRecordHandler = (inputIds, isIncome) => {
-        console.log('Adding combined record:', inputIds, isIncome);
         const newRow = combinedTableBody.insertRow();
         const inputElements = inputIds.map(id => getElement(id));
     
@@ -45,11 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const cell = newRow.insertCell(index);
     
             if (index === 0) {
-                cell.textContent = isIncome ? inputElement.value : '-';
+                cell.textContent = inputElement.value;
             } else if (index === 1) {
-                cell.textContent = '-';
+                cell.textContent = isIncome ? '-' : inputElement.value;
             } else if (index === 2) {
-                cell.textContent = isIncome ? inputElements[1].value : inputElement.value;
+                cell.textContent = isIncome ? inputElements[2].value : inputElement.value;
             } else {
                 cell.textContent = inputElement.tagName === 'SELECT' ?
                     inputElement.options[inputElement.selectedIndex].text :
@@ -66,12 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
         newRow.className = isIncome ? 'income' : 'expense';
         updateMonthlyBudget();
     
-        console.log('Table content:', Array.from(combinedTableBody.getElementsByTagName('tr')).map(row => Array.from(row.cells).map(cell => cell.textContent)));
+        //console.log('Table content:', Array.from(combinedTableBody.getElementsByTagName('tr')).map(row => Array.from(row.cells).map(cell => cell.textContent)));
     };
     
     const addIncomeRecord = () => {
         const inputIds = [
                         'income-type',
+                        'expense-category',
                         'income-frequency', 
                         'income-amount', 
                         'income-date'
@@ -107,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const balanceValue = totalIncomesValue - totalExpensesValue;
         balanceResult.value = balanceValue;
+        console.log (totalExpensesValue,totalIncomesValue);
     };
 
     const calculateTotal = (recordType) => {
@@ -115,15 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = rows.reduce((sum, row) => {
             const cells = Array.from(row.cells);
 
-            const amountCell = cells.length > 2 ? cells[2] : null;
+            const incomeInput = row.classList.contains('income');
+            const expenseInput = row.classList.contains('expense');
 
-        if (amountCell && amountCell.classList.contains(`${recordType}-amount`)) {
-            const amount = parseFloat(amountCell.textContent) || 0;
-            return sum + amount;
-        }
+            if (incomeInput && recordType === 'income') {
+                const amount = parseFloat(cells[3].textContent) || 0;
+                return sum + amount;   
+            } else if (expenseInput && recordType === 'expense') {
+                const amount = parseFloat(cells[3].textContent) || 0;
+                return sum + amount;   
+            }
 
-        return sum;
-            
+            return sum;
         }, 0);
     
         console.log(`Total ${recordType}s:`, total);
