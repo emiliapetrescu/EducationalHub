@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('dom loaded');
 
     const getElement = (id) => document.getElementById(id);
+<<<<<<< HEAD
+=======
+    const addIncomeBtn = getElement('add-income-btn');
+    const addExpenseBtn = getElement('add-expenses-btn');
+>>>>>>> 07837e9b110cefbef598692d9bcce2d0312563f6
     const incomeTableBody = getElement('income-table-body');
     const expenseTableBody = getElement('expense-table-body');
     const mainDropdown = getElement('main-expenses-dropdown');
@@ -18,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         initialOptions.forEach(initialOption => {
             if (
-                initialOption.value.startsWith(selectedValue) ||
+                initialOption.value === selectedValue ||
                 initialOption.value === 'Select category:'
             ) {
                 const newOption = initialOption.cloneNode(true);
@@ -108,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     mainDropdown.addEventListener('change', combineHandler);
-    getElement('add-income-btn').addEventListener('click', addIncomeRecord);
-    getElement('add-expenses-btn').addEventListener('click', addExpenseRecord);
+    addIncomeBtn.addEventListener('click', addIncomeRecord);
+    addExpenseBtn.addEventListener('click', addExpenseRecord);
     updateMonthlyBudget();
 });
