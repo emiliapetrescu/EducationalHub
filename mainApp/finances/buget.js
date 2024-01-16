@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('dom loaded');
 
     const getElement = (id) => document.getElementById(id);
-
     const incomeTableBody = getElement('income-table-body');
     const expenseTableBody = getElement('expense-table-body');
     const mainDropdown = getElement('main-expenses-dropdown');
@@ -50,13 +49,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const addIncomeRecord = () => {
-        const inputIds = ['income-type', 'income-frequency', 'income-amount', 'income-date'];
+        const inputIds = [
+                        'income-type', 
+                        'income-frequency', 
+                        'income-amount', 
+                        'income-date'
+                    ];
         addRecordHandler(inputIds, incomeTableBody, 'income-table-container');
         updateMonthlyBudget();
     };
 
     const addExpenseRecord = () => {
-        const inputIds = ['main-expenses-dropdown', 'nested-expenses-dropdown', 'expense-frequency', 'expense-amount', 'expenses-date'];
+        const inputIds = [
+                        'main-expenses-dropdown', 
+                        'nested-expenses-dropdown', 
+                        'expense-frequency', 
+                        'expense-amount', 
+                        'expenses-date'
+                    ];
 
         addRecordHandler(inputIds, expenseTableBody, 'expense-table-container');
         updateMonthlyBudget();
