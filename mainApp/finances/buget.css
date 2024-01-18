@@ -140,9 +140,11 @@ h2,
 
 .income-cell {
     font-weight: bold;
+    border-radius: 10px;
 }
 
 .expense-cell {
+    border-radius: 10px;
     color: var(--strong); 
     font-weight: bold;
 }
