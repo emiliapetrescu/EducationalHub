@@ -91,7 +91,8 @@ h2,
     font-weight: bold;
 }
 
-.button{
+.button,
+.report-button {
     font: inherit;
     font-weight: bold;
     border-radius: 5px;

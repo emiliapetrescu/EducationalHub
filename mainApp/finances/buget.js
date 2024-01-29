@@ -13,6 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
 	const totalExpenses = getElement('total-expenses');
 	const balanceResult = getElement('balance');
 
+	const incomesReportBtn = getElement('incomes-report-btn');
+	const expensesReportBtn = getElement('expenses-report-btn');
+	const budgetReportBtn = getElement('budget-report-btn');
+	const reportStartDate = getElement('report-start-date');
+	const reportEndDate = getElement('report-end-date');
+	const reportOutput = getElement('report-output-container');
+
+	const showReportOutput = () => {
+		reportOutput.style.display = 'block';
+	}
+
+	const hideReportOutput = () => {
+		reportOutput.style.display = 'none';
+	}
+
 	const combineHandler = () => {
 		nestedDropdown.innerHTML = '';
 		const selectedValue = mainDropdown.value;
@@ -92,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 
 	const updateMonthlyBudget = () => {
-		const totalIncomesValue = calculateTotal('income');
-		const totalExpensesValue = calculateTotal('expense');
+		const totalIncomesValue = globalBudget('income');
+		const totalExpensesValue = globalBudget('expense');
 
 		totalIncomes.value = totalIncomesValue;
 		totalExpenses.value = totalExpensesValue;
@@ -103,33 +118,89 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log(totalExpensesValue, totalIncomesValue);
 	};
 
-	const calculateTotal = recordType => {
-		const rows = Array.from(combinedTableBody.getElementsByTagName('tr'));
+	const globalBudget = (recordType) => {
+        const rows = Array.from(combinedTableBody.getElementsByTagName('tr'));
+    
+        const total = rows.reduce((sum, row) => {
+            const cells = Array.from(row.cells);
 
-		const total = rows.reduce((sum, row) => {
+            const incomeInput = row.classList.contains('income');
+            const expenseInput = row.classList.contains('expense');
+
+            if (incomeInput && recordType === 'income') {
+                const amount = parseFloat(cells[3].textContent) || 0;
+                return sum + amount;   
+            } else if (expenseInput && recordType === 'expense') {
+                const amount = parseFloat(cells[3].textContent) || 0;
+                return sum + amount;   
+            }
+
+            return sum;
+        }, 0);
+    
+        console.log(`Total ${recordType}s:`, total);
+        return total;
+    };
+
+	const isMatchingDate = (currentDate, startDate, endDate) => {
+		return currentDate >= startDate && currentDate <= endDate;
+	};
+
+
+const reportBudget = (startDate, endDate) => {
+	const rows = Array.from(combinedTableBody.getElementsByTagName('tr'));
+
+	const incomeTotal = rows
+		.filter((row) => row.classList.contains('income'))
+		.filter((row) => {
 			const cells = Array.from(row.cells);
-
-			const incomeInput = row.classList.contains('income');
-			const expenseInput = row.classList.contains('expense');
-
-			if (incomeInput && recordType === 'income') {
-				const amount = parseFloat(cells[3].textContent) || 0;
-				return sum + amount;
-			}
-
-			if (expenseInput && recordType === 'expense') {
-				const amount = parseFloat(cells[3].textContent) || 0;
-				return sum + amount;
-			}
-
-			return sum;
+			const currentDate = new Date(cells[4].textContent);
+			return isMatchingDate(currentDate, startDate, endDate);
+		})
+		.reduce((sum, row) => {
+			const cells = Array.from(row.cells);
+			const amount = parseFloat(cells[3].textContent) || 0;
+			return sum + amount;
+		}, 0);
+		
+		const expenseTotal = rows
+		.filter((row) => row.classList.contains('expense'))
+		.filter((row) => {
+			const cells = Array.from(row.cells);
+			const currentDate = new Date(cells[4].textContent);
+			return isMatchingDate(currentDate, startDate, endDate);
+		})
+		.reduce((sum, row) => {
+			const cells = Array.from(row.cells);
+			const amount = parseFloat(cells[3].textContent) || 0;
+			return sum + amount;
 		}, 0);
 
-		console.log(`Total ${recordType}s:`, total);
-		return total;
+		const budget = incomeTotal - expenseTotal;
+
+		console.log(`Total Income for the selected dates is:`, incomeTotal);
+		console.log(`Total Expense for the selected dates is:`, expenseTotal);
+		console.log(`Budget (Income - Expense) for the selected dates is:`, budget);
+	
+		return budget;
 	};
+
+	
+	budgetReportBtn.addEventListener('click', () => {
+		const startDateValue = reportStartDate.value;
+		const endDateValue = reportEndDate.value;
+	
+		const startDate = new Date(startDateValue);
+		const endDate = new Date(endDateValue);
+	
+		const totalBudget = reportBudget(startDate, endDate);
+		reportOutput.innerHTML = `<p>Budget for the selected dates is: ${totalBudget}</p>`;
+	});
 
 	mainDropdown.addEventListener('change', combineHandler);
 	addIncomeBtn.addEventListener('click', addIncomeRecord);
 	addExpenseBtn.addEventListener('click', addExpenseRecord);
+	incomesReportBtn.addEventListener('click', () => generateReport('income'));
+	expensesReportBtn.addEventListener('click', () => generateReport('expense'));
+	
 });
