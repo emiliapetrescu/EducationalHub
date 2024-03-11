@@ -2,11 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('dom loaded');
 
     const getElement = (id) => document.getElementById(id);
-<<<<<<< HEAD
-=======
     const addIncomeBtn = getElement('add-income-btn');
     const addExpenseBtn = getElement('add-expenses-btn');
->>>>>>> 07837e9b110cefbef598692d9bcce2d0312563f6
     const incomeTableBody = getElement('income-table-body');
     const expenseTableBody = getElement('expense-table-body');
     const mainDropdown = getElement('main-expenses-dropdown');
