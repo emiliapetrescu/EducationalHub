@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const totalIncomes = getElement('total-incomes');
 	const totalExpenses = getElement('total-expenses');
 	const balanceResult = getElement('balance');
-
 	const incomesReportBtn = getElement('incomes-report-btn');
 	const expensesReportBtn = getElement('expenses-report-btn');
 	const budgetReportBtn = getElement('budget-report-btn');
@@ -146,8 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		return currentDate >= startDate && currentDate <= endDate;
 	};
 
-
-const reportBudget = (startDate, endDate) => {
+    //aici am ramas
+	
+	const reportBudget = (startDate, endDate) => {
 	const rows = Array.from(combinedTableBody.getElementsByTagName('tr'));
 
 	const incomeTotal = rows
@@ -185,22 +185,10 @@ const reportBudget = (startDate, endDate) => {
 		return budget;
 	};
 
-	
-	budgetReportBtn.addEventListener('click', () => {
-		const startDateValue = reportStartDate.value;
-		const endDateValue = reportEndDate.value;
-	
-		const startDate = new Date(startDateValue);
-		const endDate = new Date(endDateValue);
-	
-		const totalBudget = reportBudget(startDate, endDate);
-		reportOutput.innerHTML = `<p>Budget for the selected dates is: ${totalBudget}</p>`;
-	});
-
 	mainDropdown.addEventListener('change', combineHandler);
 	addIncomeBtn.addEventListener('click', addIncomeRecord);
 	addExpenseBtn.addEventListener('click', addExpenseRecord);
 	incomesReportBtn.addEventListener('click', () => generateReport('income'));
 	expensesReportBtn.addEventListener('click', () => generateReport('expense'));
-	
+	budgetReportBtn.addEventListener('click', () => generateReport('budget'));
 });

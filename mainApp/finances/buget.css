@@ -10,9 +10,11 @@
 
 section.app-box {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     flex-direction: row;
     justify-content: space-around;
+    max-width: 70%;
+    position: relative;
 }
 
 main.finances-budget-app {
@@ -22,7 +24,7 @@ main.finances-budget-app {
     border-radius: 30px;
     padding: 2rem;
     margin-top: 6rem;
-    margin-left: 2rem;
+    margin-left: 0rem;
     width: 18rem;
     border: 0.2rem solid var(--border-color);
     background:var(--medium-blue);
@@ -36,9 +38,9 @@ main.income-register{
     flex-wrap: wrap;
     flex-direction: column;
     border-radius: 30px;
-    padding: 2rem;
+    padding: 1rem;
     margin-top: 6rem;
-    margin-left: 3rem;
+    margin-left: 0rem;
     width: 20rem;
     max-width: 25%;
     border: 0.2rem solid var(--border-color);
@@ -53,18 +55,17 @@ main.expenses-register{
     flex-wrap: wrap;
     flex-direction: column;
     border-radius: 30px;
-    padding: 2rem;
+    padding: 1rem;
     margin-top: 6rem;
-    margin-left: 3rem;
-    width: 23rem;
-    max-width: 30%;
+    margin-left: 0rem;
+    width: 20rem;
+    max-width: 27%;
     border: 0.2rem solid var(--border-color);
     background:var(--light-blue);
     color: var(--dark-blue);
     box-shadow: 2px 2px 2px 2px var(--medium-blue);
     animation: fadeIn 1.5s ease-in;
 }
-
 
 h1,
 h2,
@@ -126,17 +127,20 @@ h2,
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border-radius: 15px;
     padding: 1rem;
+    margin: 0 auto;
     margin-top: 0.5rem;
-    margin-left: 2rem;
+    margin-left: auto;
     margin-bottom: 1rem;
-    width: 45rem;
-    max-width: 50%;
+    width: 70%;
+    max-width: 45rem;
     border: 0.1rem solid var(--border-color);
     background:var(--light-blue);
     color: var(--dark-blue);
     box-shadow: 2px 2px 2px 2px #ccc;
     animation: fadeIn 1.5s ease-in;
-    vertical-align: middle;
+    position: relative;
+    left: 10%; 
+    transform: translateX(-50%); 
 }
 
 .income-cell {
@@ -155,7 +159,7 @@ th, td{
     text-align: center;
 }
 
-@media (max-width: 77rem) {
+@media (max-width: 83rem) {
     section.app-box {
         flex-direction: row;
         justify-content: space-around;
@@ -168,10 +172,20 @@ th, td{
         flex-direction: column;
         flex-wrap: wrap;
         align-self: self-start;
-        min-width: 19rem;
+        min-width: 18rem;
         width: 100%;
     }
+
+    .combined-table {
+        left: auto;  
+        max-width: 70%; 
+        margin-left: 1rem; 
+        transform: none; 
 }
+
+}
+
+
 
 @keyframes fadeIn {
     from {
