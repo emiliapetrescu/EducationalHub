@@ -83,13 +83,26 @@ h2,
     padding-left: 1rem;
 }
 
-.inputs {
+.inputs{
     display: flex;
     align-self: flex-start;
     margin: 1rem;
     padding: 0.1rem;
     border-radius: 5px;
     font-weight: bold;
+}
+
+.report-input{
+    margin: 1.5rem;
+    padding: 0.1rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+label[for="report-start-date"],
+label[for="report-end-date"] {
+    font-weight: bold;
+    margin-left: 1rem;
 }
 
 .button,
@@ -101,13 +114,16 @@ h2,
     background:var(--light);
     color: var(--dark-blue);
     padding: 0.5rem;
+    margin-top: 1rem;
     margin-left: 0.9rem;;
     cursor: pointer;
     align-self: flex-start;
 }
 
 .button:hover,
-.button:active {
+.button:active,
+.report-button:hover,
+.report-button:active {
     background:var(--strong);
     color: var(--light);
     border: 3px solid var(--background-buget);
@@ -131,7 +147,7 @@ h2,
     margin-top: 0.5rem;
     margin-left: auto;
     margin-bottom: 1rem;
-    width: 70%;
+    width: 65%;
     max-width: 45rem;
     border: 0.1rem solid var(--border-color);
     background:var(--light-blue);
@@ -146,15 +162,25 @@ h2,
 .income-cell {
     font-weight: bold;
     border-radius: 10px;
+    padding: 0.5rem;
 }
 
 .expense-cell {
     border-radius: 10px;
     color: var(--strong); 
     font-weight: bold;
+    padding: 0.5rem;
 }
 
-th, td{
+th{
+    padding: 0.2rem 1rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-bottom: 2px solid black;
+}
+
+td{
     padding: 0.2rem 1rem;
     text-align: center;
 }
@@ -184,8 +210,6 @@ th, td{
 }
 
 }
-
-
 
 @keyframes fadeIn {
     from {
